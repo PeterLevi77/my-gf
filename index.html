@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dia dos Namorados ❤️</title>
+  <style>
+    body {
+      background-color: #ffe6e6;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      color: #990000;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #cc0000;
+    }
+
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e60000;
+    }
+
+    #mensagem {
+      margin-top: 30px;
+      font-size: 2em;
+      color: #cc0000;
+      display: none;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    .galeria {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 2s forwards;
+    }
+
+    .galeria img {
+      max-width: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+      margin: 10px 0;
+    }
+
+    .controles {
+      display: none;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+      z-index: 1;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10px;
+        opacity: 1;
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Feliz Dia dos Namorados! 💖</h1>
+  <button onclick="mostrarMensagem()">Clique aqui</button>
+
+  <div id="mensagem">Te amo, Branquinha! ❤️</div>
+
+  <div class="galeria" id="galeria">
+    <img src="C:\Users\Servidor\OneDrive\Área de Trabalho\Recibo de pagamentos\foto1.jpg" alt="Minha Imagem" width="300" height="300">
+    <img src="C:\Users\Servidor\OneDrive\Área de Trabalho\Recibo de pagamentos\foto2.jpg" alt="Minha Imagem" width="300" height="300">
+    <img src="C:\Users\Servidor\OneDrive\Área de Trabalho\Recibo de pagamentos\foto3.jpg" alt="Minha Imagem" width="300" height="300">
+  </div>
+
+  <div class="controles" id="controles">
+    <button onclick="pausarMusica()">⏸️ Pausar</button>
+    <button onclick="repetirMusica()">🔁 Repetir</button>
+  </div>
+
+  <audio id="musica" src="https://www.bensound.com/bensound-music/bensound-love.mp3" preload="auto"></audio>
+
+  <script>
+    function mostrarMensagem() {
+      document.getElementById('mensagem').style.display = 'block';
+      document.getElementById('galeria').style.display = 'block';
+      document.getElementById('musica').play();
+      document.getElementById('controles').style.display = 'block';
+      criarCorações();
+    }
+
+    function pausarMusica() {
+      document.getElementById('musica').pause();
+    }
+
+    function repetirMusica() {
+      const musica = document.getElementById('musica');
+      musica.currentTime = 0;
+      musica.play();
+    }
+
+    function criarCorações() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 300);
+    }
+  </script>
+</body>
+</html>
